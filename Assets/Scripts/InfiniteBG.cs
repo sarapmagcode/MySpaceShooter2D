@@ -2,7 +2,7 @@ using UnityEngine;
 
 /// <summary>
 /// Infinite background effect
-/// Refer to https://www.youtube.com/watch?v=ouUQOCtbJcs
+/// Refer to <see href="https://www.youtube.com/watch?v=ouUQOCtbJcs"/>
 /// </summary>
 public class InfiniteBG : MonoBehaviour
 {
