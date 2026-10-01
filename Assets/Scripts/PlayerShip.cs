@@ -9,6 +9,10 @@ public class PlayerShip : MonoBehaviour
 
     // Hold the Action references
     private InputAction _moveAction;
+    private InputAction _attackAction;
+
+    [SerializeField]
+    private GameObject _playerBulletReference;
 
     private SpriteRenderer _spriteRenderer;
 
@@ -21,6 +25,7 @@ public class PlayerShip : MonoBehaviour
     private void Start()
     {
         _moveAction = InputSystem.actions.FindAction("Move");
+        _attackAction = InputSystem.actions.FindAction("Attack");
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -33,6 +38,23 @@ public class PlayerShip : MonoBehaviour
         Vector2 moveValue = _moveAction.ReadValue<Vector2>();
         transform.position += new Vector3(moveValue.x, moveValue.y, 0f) * _moveForce * Time.deltaTime;
         ClampPlayerOnCameraView();
+
+        // Calling player input in FixedUpdate() is terrible, it can cause all sort of bugs, and doing physics
+        // in Update() is terrible for performance.
+        // A general rule of thumb is if you are affecting a rigidbody through script, use FixedUpdate(), for
+        // everything else, use Update().
+        // Refer to https://discussions.unity.com/t/advice-on-update-vs-fixedupdate/174775
+        PlayerFiresBullet();
+    }
+
+    private void PlayerFiresBullet()
+    {
+        if (_attackAction.IsPressed())
+        {
+            Debug.Log("Player fired a bullet!");
+
+
+        }
     }
 
     /// <summary>
