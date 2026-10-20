@@ -16,6 +16,9 @@ public class PlayerShip : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;
 
+    private bool _shotFired = false;
+    private GameObject _spawnedPlayerBullet;
+
     /// <summary>
     /// Start is called once before the first execution of Update after the MonoBehaviour is created
     /// </summary>
@@ -49,11 +52,21 @@ public class PlayerShip : MonoBehaviour
 
     private void PlayerFiresBullet()
     {
-        if (_attackAction.IsPressed())
+        if (_attackAction.IsPressed() && !_shotFired)
         {
+            _shotFired = true;
             Debug.Log("Player fired a bullet!");
 
+            _spawnedPlayerBullet = Instantiate(_playerBulletReference);
 
+            _spawnedPlayerBullet.transform.position = new Vector3(
+                transform.position.x + 1f, 
+                transform.position.y, 
+                transform.position.z);
+        }
+        else if (!_attackAction.IsPressed())
+        {
+            _shotFired = false;
         }
     }
 
