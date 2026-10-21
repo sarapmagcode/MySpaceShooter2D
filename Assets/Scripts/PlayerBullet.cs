@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerBullet : MonoBehaviour
 {
     [SerializeField]
-    private float _speed = 7f;
+    private float _speed = 13f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
