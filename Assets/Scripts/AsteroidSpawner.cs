@@ -24,11 +24,14 @@ public class AsteroidSpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(1, 5));
 
-            _spawnedAsteroid = Instantiate(_asteroidReference[0]);
-            float asteroidRadiusWithOffset = _spawnedAsteroid.GetComponent<CircleCollider2D>().radius + 0.3f;
+            // Randomize asteroid type
+            int randomIndex = Random.Range(0, _asteroidReference.Length);
+            _spawnedAsteroid = Instantiate(_asteroidReference[randomIndex]);
 
             // Randomized y-position of spawned asteroid based on the collector's height (and making
             // sure the asteroid doesn't go out of spawner bounds)
+            float asteroidRadiusWithOffset = _spawnedAsteroid.GetComponent<CircleCollider2D>().radius + 0.3f;
+
             _spawnedAsteroid.transform.position = new Vector3(
                 transform.position.x,
                 Random.Range(
