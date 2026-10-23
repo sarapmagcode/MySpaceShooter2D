@@ -1,8 +1,13 @@
+using System.Linq;
 using UnityEngine;
 
 public class Collector : MonoBehaviour
 {
-    private const string PlayerBulletTag = "PlayerBullet";
+    private static readonly string[] _tagsToDestroy = new[]
+    {
+        "PlayerBullet",
+        "Asteroid"
+    };
 
     /// <summary>
     /// Destroys the specified game objects that the it collides with.
@@ -12,7 +17,7 @@ public class Collector : MonoBehaviour
     /// </remarks>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(PlayerBulletTag))
+        if (_tagsToDestroy.Contains(collision.tag))
         {
             Destroy(collision.gameObject);
         }
