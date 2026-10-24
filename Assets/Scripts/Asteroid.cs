@@ -7,9 +7,6 @@ public class Asteroid : MonoBehaviour
     private float _rotationValue = 0.175f;
 
     [SerializeField]
-    private float _speed = 5f;
-
-    [SerializeField]
     private HealthBar _healthBar;
 
     private int _maxHealth = 100;
@@ -26,7 +23,6 @@ public class Asteroid : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        transform.position += new Vector3(_speed * Time.deltaTime * -1, 0, 0);
         transform.Rotate(new Vector3(0, 0, _rotationValue));
     }
 

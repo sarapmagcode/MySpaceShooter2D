@@ -6,7 +6,7 @@ public class Collector : MonoBehaviour
     private static readonly string[] _tagsToDestroy = new[]
     {
         "PlayerBullet",
-        "Asteroid"
+        "AsteroidContainer"
     };
 
     /// <summary>
